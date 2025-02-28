@@ -2,3 +2,4 @@ blockchain.json
 __pycache__/
 *.pyc
 .DS_Store
+main.py
