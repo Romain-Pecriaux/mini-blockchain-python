@@ -4,6 +4,13 @@ import time
 
 class Block:
     def __init__(self, index, previous_hash, transactions, timestamp=None):
+        """
+        Initialise un nouveau bloc.
+        :param index: Index du bloc.
+        :param previous_hash: Hash du bloc précédent.
+        :param transactions: Liste des transactions.
+        :param timestamp: Timestamp du bloc.
+        """
         self.index = index
         self.previous_hash = previous_hash
         self.transactions = transactions  # Liste de transactions
@@ -53,6 +60,9 @@ class Block:
             block_dict["timestamp"]
         )
 
+    def __repr__(self):
+        return f"Block(index={self.index}, previous_hash={self.previous_hash}, hash={self.hash}, nonce={self.nonce})"
+
 class Transaction:
     def __init__(self, sender, recipient, amount):
         self.sender = sender
@@ -78,18 +88,10 @@ class Blockchain:
         """
         Vérifie l'intégrité de la blockchain.
         """
-        for i in range(1, len(self.chain)):
-            current = self.chain[i]
+        for i, current in enumerate(self.chain[1:], start=1):
             previous = self.chain[i - 1]
-            
-            # Vérification du hash précédent
-            if current.previous_hash != previous.hash:
+            if current.previous_hash != previous.hash or current.hash != current.calculate_hash():
                 return False
-            
-            # Vérification du hash du bloc
-            if current.hash != current.calculate_hash():
-                return False
-
         return True
 
     def save_chain(self, filename="blockchain.json"):
@@ -113,12 +115,20 @@ class Blockchain:
             self.save_chain()
 
     def add_transaction(self, transaction):
+        if not isinstance(transaction, Transaction):
+            raise TypeError("Invalid transaction type")
+        if transaction.amount <= 0:
+            raise ValueError("Transaction amount must be positive")
+        if not transaction.sender or not transaction.recipient:
+            raise ValueError("Transaction must have a sender and a recipient")
         self.pending_transactions.append(transaction)
 
     def mine_new_block(self):
+        if not self.pending_transactions:
+            raise ValueError("No transactions to mine")
         last_block = self.chain[-1]
         new_block = Block(len(self.chain), last_block.hash, self.pending_transactions)
-        new_block.mine_block(difficulty=2)  # Ajustez la difficulté selon vos besoins
+        new_block.mine_block(difficulty=2)
         self.chain.append(new_block)
-        self.pending_transactions = []  # Réinitialise la liste des transactions en attente
+        self.pending_transactions = []
         self.save_chain()

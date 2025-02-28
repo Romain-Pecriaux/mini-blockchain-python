@@ -1,0 +1,180 @@
+:root {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --container-background: #1e1e1e;
+    --button-background: #3a3a3a;
+    --button-hover-background: #575757;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: var(--container-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--button-background);
+    color: var(--text-color);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--button-hover-background);
+    transform: scale(1.05);
+}
+
+.custom-btn {
+    background-color: var(--button-background) !important; /* même couleur que l'état normal avec !important */
+    color: var(--text-color) !important;
+    border: none !important;
+    transition: background-color 0.3s, transform 0.3s !important;
+}
+
+.custom-btn:hover {
+    background-color: var(--button-hover-background) !important;
+    transform: scale(1.05) !important;
+}
+
+.custom-btn:focus,
+.custom-btn:active {
+    background-color: var(--button-background) !important; /* même couleur que l'état normal avec !important */
+    transform: none !important; /* désactiver la transformation */
+    box-shadow: none !important; /* désactiver l'ombre */
+}
+
+.modal-content {
+    background-color: var(--container-background); /* même couleur que le conteneur principal */
+    color: var(--text-color); /* même couleur de texte que la page principale */
+    border-radius: 8px; /* même bordure arrondie que le conteneur principal */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* même ombre que le conteneur principal */
+    border: none; /* supprimer la bordure par défaut */
+}
+
+.modal-header, .modal-footer {
+    border: none; /* supprimer les bordures par défaut */
+}
+
+.modal-header {
+    border-bottom: 1px solid #444; /* ajouter une bordure en bas pour séparer le header */
+}
+
+.modal-header .close {
+    color: #ffffff; /* couleur blanche pour la croix de fermeture */
+    opacity: 1; /* rendre la croix complètement opaque */
+}
+
+.modal-header .close:hover {
+    color: #cccccc; /* couleur gris clair pour la croix de fermeture au survol */
+}
+
+.modal-footer {
+    border-top: 1px solid #444; /* ajouter une bordure en haut pour séparer le footer */
+}
+
+.modal-title {
+    color: #ffffff; /* même couleur de titre que la page principale */
+}
+
+.modal-body {
+    padding: 20px; /* même padding que le conteneur principal */
+}
+
+.modal-footer .btn {
+    background-color: var(--button-background); /* même couleur de fond que les boutons principaux */
+    color: var(--text-color); /* même couleur de texte que les boutons principaux */
+    border: none; /* supprimer la bordure par défaut */
+    transition: background-color 0.3s, transform 0.3s; /* même transition que les boutons principaux */
+}
+
+.modal-footer .btn:hover {
+    background-color: var(--button-hover-background); /* même couleur de fond au survol que les boutons principaux */
+    transform: scale(1.05); /* même transformation au survol que les boutons principaux */
+}
+
+.pending-transactions {
+    margin-top: 20px;
+}
+
+.transaction {
+    background: #2e2e2e;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between; /* Align items horizontally and space them out */
+    align-items: center; /* Center items vertically */
+}
+
+.transaction-info {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+.transaction .sender,
+.transaction .amount,
+.transaction .receiver {
+    margin-bottom: 5px; /* Add some space between each item */
+}
+
+.delete-btn {
+    margin-left: 20px; /* Add some space between the info and the button */
+}
+
+.blockchain-visual {
+    margin-top: 20px;
+}
+
+.block {
+    background: #2e2e2e;
+    padding: 20px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.block h3 {
+    margin-top: 0;
+}
+
+.block ul {
+    list-style-type: none;
+    padding-left: 0;
+}

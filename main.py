@@ -1,10 +1,10 @@
 from blockchain import Blockchain
 from blockchain import Transaction
 
-# Initialisation
+# Initialisation de la blockchain
 blockchain = Blockchain()
 
-# Ajout de blocs
+# Ajout de transactions
 blockchain.add_transaction(Transaction("Alice", "Bob", 10))
 blockchain.add_transaction(Transaction("Bob", "Charlie", 5))
 
@@ -15,9 +15,9 @@ blockchain.mine_new_block()
 blockchain.add_transaction(Transaction("Charlie", "Alice", 3))
 blockchain.mine_new_block()
 
-# Vérification de la blockchain
+# Vérification de la validité de la blockchain
 print("Blockchain valide ?", blockchain.is_valid_chain())
 
-# Affichage des blocs
+# Affichage des blocs de la blockchain
 for block in blockchain.chain:
     print(block.to_dict())
